@@ -1,5 +1,14 @@
-<ul class="list-group">
-  <li *ngFor="let location of locations" class="list-group-item">
-    {{location.name}}
-  </li>
-</ul>
+<div class="row">
+  <div class="col-2">
+    <div class="list-group">
+      <a *ngFor="let location of locations"
+         href="#"
+         class="list-group-item list-group-item-action"
+         [class.active]="location === selectedLocation"
+         (click)="onSelect(location)">
+        {{location.name}}
+      </a>
+    </div>
+  </div>
+</div>
+<app-forecast [location]="selectedLocation"></app-forecast>

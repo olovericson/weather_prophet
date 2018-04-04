@@ -9,11 +9,16 @@ import {Location} from '../services/location-service/location';
 })
 export class LocationsForecastComponent implements OnInit {
   locations: Location[];
+  selectedLocation: Location;
 
   constructor(private locationService: LocationService) { }
 
   ngOnInit() {
     this.locationService.get_locations()
       .subscribe(locations => this.locations = locations);
+  }
+
+  onSelect(location: Location): void {
+    this.selectedLocation = location;
   }
 }
