@@ -1,3 +1,6 @@
 <div *ngIf="location">
   <h2>Weather forecast for {{location.name}}</h2>
 </div>
+<div *ngIf="forecast">
+  <h2 *ngFor="let timeSeriesEntry of forecast.timeSeries">{{timeSeriesEntry.validTime}}</h2>
+</div>

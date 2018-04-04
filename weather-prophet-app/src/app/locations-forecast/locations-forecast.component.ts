@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LocationService} from '../services/location-service/location.service';
-import {Location} from '../services/location-service/location';
+import {Location} from '../location';
 
 @Component({
   selector: 'app-locations-forecast',
