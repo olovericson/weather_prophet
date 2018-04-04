@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  variables:
+    key: "value"
+    key: "value"
+  parameter-store:
+    key: "value"
+    key: "value"
+
+phases:
+  install:
+    commands:
+      - cd weather-prophet-app
+      - sudo npm install -g @angular/cli
+      - sudo npm install
+  build:
+    commands:
+      - ng build --prod
+  post_build:
+    commands:
+      - aws s3 sync ./dist s3://weather-prophet
