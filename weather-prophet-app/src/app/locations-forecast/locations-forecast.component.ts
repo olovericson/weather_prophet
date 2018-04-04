@@ -13,6 +13,7 @@ export class LocationsForecastComponent implements OnInit {
   constructor(private locationService: LocationService) { }
 
   ngOnInit() {
-    this.locations = this.locationService.get_locations();
+    this.locationService.get_locations()
+      .subscribe(locations => this.locations = locations);
   }
 }
