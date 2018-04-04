@@ -5,6 +5,9 @@ export class Forecast {
 class TimeSeriesEntry {
   validTime: Date;
   parameters: TimeSeriesEntryParameter[];
+
+  temperature: number;
+  cloudiness: string;
 }
 
 class TimeSeriesEntryParameter {

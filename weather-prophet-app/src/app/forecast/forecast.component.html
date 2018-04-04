@@ -2,5 +2,20 @@
   <h2>Weather forecast for {{location.name}}</h2>
 </div>
 <div *ngIf="forecast">
-  <h2 *ngFor="let timeSeriesEntry of forecast.timeSeries">{{timeSeriesEntry.validTime}}</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Time</th>
+      <th scope="col">Temp</th>
+      <th scope="col">Cloudiness</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let timeSeriesEntry of forecast.timeSeries">
+        <td>{{timeSeriesEntry.validTime}}</td>
+        <td>{{timeSeriesEntry.temperature}}</td>
+        <td>{{timeSeriesEntry.cloudiness}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
