@@ -4,6 +4,7 @@ phases:
   install:
     commands:
       - cd weather-prophet-app
+      - rm -rf node_modules/
       - sudo npm install -g @angular/cli
       - sudo npm install
   build:

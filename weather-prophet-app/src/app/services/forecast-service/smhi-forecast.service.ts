@@ -48,8 +48,6 @@ export class SmhiForecastService {
 
     return this.http.get(url)
       .map(x => {
-        console.log(x['timeSeries']);
-
         return {
           timeSeries: x['timeSeries'].map(y => {
             return {
