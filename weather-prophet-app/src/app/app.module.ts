@@ -3,16 +3,21 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { LocationsForecastComponent } from './locations-forecast/locations-forecast.component';
+import {LocationService} from './services/location-service/location.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LocationsForecastComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    LocationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
