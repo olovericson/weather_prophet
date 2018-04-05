@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let timeSeriesEntry of forecast.timeSeries">
-        <td>{{timeSeriesEntry.validTime}}</td>
+        <td>{{formatDate(timeSeriesEntry.validTime)}}</td>
         <td>{{timeSeriesEntry.temperature}}</td>
         <td><img [src]="timeSeriesEntry.imageUrl"></td>
       </tr>

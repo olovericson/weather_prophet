@@ -2,6 +2,7 @@ import {Component, OnInit, Input, HostListener} from '@angular/core';
 import { Location } from '../location';
 import {SmhiForecastService} from '../services/forecast-service/smhi-forecast.service';
 import {Forecast} from '../forecast';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-forecast',
@@ -35,4 +36,8 @@ export class ForecastComponent implements OnInit {
       .subscribe(forecast => this.forecast = forecast);
   }
 
+  formatDate(date: Date): string {
+     moment.locale('sv');
+     return moment(date).local().calendar();
+  }
 }
