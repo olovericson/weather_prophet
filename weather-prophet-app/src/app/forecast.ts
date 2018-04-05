@@ -8,6 +8,7 @@ class TimeSeriesEntry {
 
   temperature: number;
   cloudiness: string;
+  imageUrl: string;
 }
 
 class TimeSeriesEntryParameter {
