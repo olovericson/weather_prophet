@@ -6,15 +6,27 @@
     <thead>
     <tr>
       <th scope="col">Time</th>
-      <th scope="col">Temp</th>
-      <th scope="col">Cloudiness</th>
+      <th scope="col">SMHI</th>
     </tr>
     </thead>
     <tbody>
       <tr *ngFor="let timeSeriesEntry of forecast.timeSeries">
         <td>{{formatDate(timeSeriesEntry.validTime)}}</td>
-        <td>{{timeSeriesEntry.temperature}}</td>
-        <td><img [src]="timeSeriesEntry.imageUrl"></td>
+        <td width="150px">
+          <div class="row">
+            <div class="col">
+              <img [src]="timeSeriesEntry.imageUrl">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{timeSeriesEntry.temperature}}°C
+            </div>
+            <div class="col">
+              {{timeSeriesEntry.precipitation}}mm
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

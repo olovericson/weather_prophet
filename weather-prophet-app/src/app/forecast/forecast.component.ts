@@ -38,6 +38,17 @@ export class ForecastComponent implements OnInit {
 
   formatDate(date: Date): string {
      moment.locale('sv');
+      moment.locale('sv', {
+        calendar : {
+          lastDay : '[Igår] LT',
+          sameDay : '[Idag] LT',
+          nextDay : '[Imorgon] LT',
+          lastWeek : '[Förra] dddd LT',
+          nextWeek : 'dddd LT',
+          sameElse : 'Do MMM LT'
+        }
+      });
+
      return moment(date).local().calendar();
   }
 }

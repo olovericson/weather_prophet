@@ -4,16 +4,8 @@ export class Forecast {
 
 class TimeSeriesEntry {
   validTime: Date;
-  parameters: TimeSeriesEntryParameter[];
 
   temperature: number;
-  cloudiness: string;
+  precipitation: number;
   imageUrl: string;
-}
-
-class TimeSeriesEntryParameter {
-  name: string;
-  levelType: string;
-  level: number;
-  values: number[];
 }

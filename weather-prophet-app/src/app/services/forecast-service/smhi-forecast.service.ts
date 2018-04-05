@@ -48,14 +48,18 @@ export class SmhiForecastService {
 
     return this.http.get(url)
       .map(x => {
+        function getParameterValue(y, t: string) {
+          return y['parameters'].find(z => z.name === t)['values'][0];
+        }
+
         return {
           timeSeries: x['timeSeries'].map(y => {
-            const weatherSymbol = y['parameters'].find(z => z.name === 'Wsymb2')['values'][0];
+            const weatherSymbol = getParameterValue(y, 'Wsymb2');
             return {
-              parameters: y['parameters'],
               validTime: y['validTime'],
-              temperature: y['parameters'].find(z => z.name === 't')['values'][0],
+              temperature: getParameterValue(y, 't'),
               cloudiness: this.weatherSymbols[weatherSymbol],
+              precipitation: getParameterValue(y, 'pmean'),
               imageUrl: `assets/images/smhi/${weatherSymbol}.png`
             };
           })
