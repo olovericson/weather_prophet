@@ -76,7 +76,7 @@ export class YrForecastService implements ForecastService {
   }
 
   private getUrl(location: Location, forecast: string) {
-    return 'https://www.yr.no/sted/' +
+    return 'https://cors-anywhere.herokuapp.com/' + 'https://www.yr.no/sted/' +
       location.country + '/' +
       location.region + '/' +
       location.name + '/' +

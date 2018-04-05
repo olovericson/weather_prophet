@@ -49,7 +49,7 @@ export class ForecastComponent implements OnInit {
           entries: [smhi, yrForecast]
         };
       });
-      console.log(forecasts);
+
       return forecasts;
     }
     return undefined;
