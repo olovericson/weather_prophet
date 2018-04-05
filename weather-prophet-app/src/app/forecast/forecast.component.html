@@ -4,11 +4,11 @@
 <div *ngIf="forecasts">
   <table class="table">
     <thead>
-    <tr>
-      <th scope="col">Time</th>
-      <th scope="col">SMHI</th>
-      <th scope="col">YR</th>
-    </tr>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col" style="text-align: center">SMHI</th>
+        <th scope="col" style="text-align: center">YR</th>
+      </tr>
     </thead>
     <tbody>
       <tr *ngFor="let timeSeriesEntry of forecasts">
