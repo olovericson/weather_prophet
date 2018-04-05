@@ -16,11 +16,15 @@ export class ForecastComponent implements OnInit {
   constructor(private smhiForecastService: SmhiForecastService, private yrForecastService: YrForecastService) { }
 
   @Input() set location(value: Location) {
+    this.doneLoading = false;
+    this._location = undefined;
     if (value) {
       this.getForecast(value);
     }
     this._location = value;
   }
+
+  doneLoading: boolean;
 
   get location(): Location {
     return this._location;
@@ -28,6 +32,7 @@ export class ForecastComponent implements OnInit {
 
   get forecasts(): any {
     if (this.smhiForecast && this.yrForecast) {
+      this.doneLoading = true;
       const forecasts = this.smhiForecast.timeSeries.map(smhi => {
         let yrForecast = this.yrForecast.timeSeries.find((y: TimeSeriesEntry) => {
           return y.validTime.getTime() === smhi.validTime.getTime();
@@ -40,7 +45,7 @@ export class ForecastComponent implements OnInit {
         }
 
         if (!yrForecast) {
-          yrForecast = {validTime: new Date(), imageUrl: 'no_image', precipitation: NaN, temperature: NaN};
+          yrForecast = {validTime: new Date(), imageUrl: 'assets/images/no_image.png', precipitation: NaN, temperature: NaN};
         }
         return {
           time: smhi.validTime,
@@ -63,13 +68,15 @@ export class ForecastComponent implements OnInit {
   }
 
   getForecast(location: Location): void {
-    this.smhiForecastService.get_forecast_for_location(location)
-      .subscribe(forecast => this.smhiForecast = forecast);
-
-    forkJoin([this.yrForecastService.get_forecast_for_location(location), this.yrForecastService.get_long_term_forecast_for_location(location)])
+    forkJoin([
+      this.yrForecastService.get_forecast_for_location(location),
+      this.yrForecastService.get_long_term_forecast_for_location(location),
+      this.smhiForecastService.get_forecast_for_location(location)
+    ])
       .subscribe(forecast => {
         this.yrForecast = forecast[0];
         this.longTermYrForecast = forecast[1];
+        this.smhiForecast = forecast[2];
       });
   }
 

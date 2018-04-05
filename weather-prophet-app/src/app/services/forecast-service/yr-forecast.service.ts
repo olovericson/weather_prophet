@@ -79,7 +79,7 @@ export class YrForecastService implements ForecastService {
     return 'https://cors-anywhere.herokuapp.com/' + 'https://www.yr.no/sted/' +
       location.country + '/' +
       location.region + '/' +
-      location.name + '/' +
+      location.name.replace(' ', '_') + '/' +
       forecast + '.xml';
   }
 }
