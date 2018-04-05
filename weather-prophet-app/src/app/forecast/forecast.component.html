@@ -1,29 +1,45 @@
 <div *ngIf="location">
   <h2>Weather forecast for {{location.name}}</h2>
 </div>
-<div *ngIf="forecast">
+<div *ngIf="forecasts">
   <table class="table">
     <thead>
     <tr>
       <th scope="col">Time</th>
       <th scope="col">SMHI</th>
+      <th scope="col">YR</th>
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let timeSeriesEntry of forecast.timeSeries">
-        <td>{{formatDate(timeSeriesEntry.validTime)}}</td>
-        <td width="150px">
+      <tr *ngFor="let timeSeriesEntry of forecasts">
+        <td>{{formatDate(timeSeriesEntry.entries[0].validTime)}}</td>
+        <td width="200px">
           <div class="row">
             <div class="col">
-              <img [src]="timeSeriesEntry.imageUrl">
+              <img [src]="timeSeriesEntry.entries[0].imageUrl" height="80px">
             </div>
           </div>
           <div class="row">
             <div class="col">
-              {{timeSeriesEntry.temperature}}°C
+              {{timeSeriesEntry.entries[0].temperature}}°C
             </div>
             <div class="col">
-              {{timeSeriesEntry.precipitation}}mm
+              {{timeSeriesEntry.entries[0].precipitation}}mm
+            </div>
+          </div>
+        </td>
+        <td width="200px">
+          <div class="row">
+            <div class="col">
+              <img [src]="timeSeriesEntry.entries[1].imageUrl" height="80px">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{timeSeriesEntry.entries[1].temperature}}°C
+            </div>
+            <div class="col">
+              {{timeSeriesEntry.entries[1].precipitation}}mm
             </div>
           </div>
         </td>

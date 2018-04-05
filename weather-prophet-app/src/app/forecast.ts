@@ -2,7 +2,7 @@ export class Forecast {
   timeSeries: TimeSeriesEntry[];
 }
 
-class TimeSeriesEntry {
+export class TimeSeriesEntry {
   validTime: Date;
 
   temperature: number;

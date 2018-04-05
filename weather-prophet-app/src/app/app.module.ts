@@ -8,6 +8,7 @@ import { ForecastComponent } from './forecast/forecast.component';
 
 import {LocationService} from './services/location-service/location.service';
 import {SmhiForecastService} from './services/forecast-service/smhi-forecast.service';
+import {YrForecastService} from './services/forecast-service/yr-forecast.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {SmhiForecastService} from './services/forecast-service/smhi-forecast.ser
   ],
   providers: [
     LocationService,
-    SmhiForecastService
+    SmhiForecastService,
+    YrForecastService
   ],
   bootstrap: [AppComponent]
 })

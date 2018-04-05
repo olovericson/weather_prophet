@@ -4,39 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Location } from '../../location';
 import {Forecast} from '../../forecast';
+import {ForecastService} from './forecast-service';
 
 @Injectable()
-export class SmhiForecastService {
-  private weatherSymbols = {
-    '1':	'Clear sky',
-    '2': 'Nearly clear sky',
-    '3':	'Variable cloudiness',
-    '4':	'Halfclear sky',
-    '5':	'Cloudy sky',
-    '6':	'Overcast',
-    '7':	'Fog',
-    '8':	'Light rain showers',
-    '9':	'Moderate rain showers',
-    '10':	'Heavy rain showers',
-    '11':	'Thunderstorm',
-    '12':	'Light sleet showers',
-    '13':	'Moderate sleet showers',
-    '14':	'Heavy sleet showers',
-    '15':	'Light snow showers',
-    '16':	'Moderate snow showers',
-    '17':	'Heavy snow showers',
-    '18':	'Light rain',
-    '19':	'Moderate rain',
-    '20':	'Heavy rain',
-    '21':	'Thunder',
-    '22':	'Light sleet',
-    '23':	'Moderate sleet',
-    '24':	'Heavy sleet',
-    '25':	'Light snowfall',
-    '26':	'Moderate snowfall',
-    '27':	'Heavy snowfall'
-  }
-
+export class SmhiForecastService implements ForecastService {
   constructor(private http: HttpClient) { }
 
   get_forecast_for_location(location: Location): Observable<Forecast> {
@@ -56,9 +27,8 @@ export class SmhiForecastService {
           timeSeries: x['timeSeries'].map(y => {
             const weatherSymbol = getParameterValue(y, 'Wsymb2');
             return {
-              validTime: y['validTime'],
+              validTime: new Date(y['validTime']),
               temperature: getParameterValue(y, 't'),
-              cloudiness: this.weatherSymbols[weatherSymbol],
               precipitation: getParameterValue(y, 'pmean'),
               imageUrl: `assets/images/smhi/${weatherSymbol}.png`
             };
