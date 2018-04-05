@@ -29,8 +29,6 @@ export class ForecastComponent implements OnInit {
   get forecasts(): any {
     if (this.smhiForecast && this.yrForecast) {
       const forecasts = this.smhiForecast.timeSeries.map(smhi => {
-        moment.locale('sv');
-
         let yrForecast = this.yrForecast.timeSeries.find((y: TimeSeriesEntry) => {
           return y.validTime.getTime() === smhi.validTime.getTime();
         });
