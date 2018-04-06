@@ -9,12 +9,14 @@ import { ForecastComponent } from './forecast/forecast.component';
 import {LocationService} from './services/location-service/location.service';
 import {SmhiForecastService} from './services/forecast-service/smhi-forecast.service';
 import {YrForecastService} from './services/forecast-service/yr-forecast.service';
+import { CreditsComponent } from './credits/credits.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocationsForecastComponent,
-    ForecastComponent
+    ForecastComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,
