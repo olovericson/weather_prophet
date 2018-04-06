@@ -38,8 +38,8 @@ export class YrForecastService implements ForecastService {
             return {
               validTime: moment(y['_from']),
               temperature: y['temperature']['_value'],
-              precipitation: y['temperature']['_value'],
-              imageUrl: `assets/images/smhi/${y['symbol']['_number']}.png`
+              precipitation: y['precipitation']['_value'],
+              imageUrl: `assets/images/yr/${y['symbol']['_var']}.png`
             };
           })
         };
