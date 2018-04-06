@@ -1,20 +1,22 @@
 <div class="row justify-content-center align-items-end mt-5">
-  <div class="box">
-      <div class="container-box">
-        <span class="icon"><i class="fa fa-search"></i></span>
-        <input #searchBox id="search-box" placeholder="Search..." (keyup)="search(searchBox.value)" />
-      </div>
+  <div class="col-sm-5">
+    <div class="box">
+        <div class="container-box">
+          <span class="icon"><i class="fa fa-search"></i></span>
+          <input #searchBox id="search-box" placeholder="Search..." (keyup)="search(searchBox.value)" />
+        </div>
+    </div>
   </div>
 </div>
-<div class="row">
-  <div class="col">
+<div class="row justify-content-center">
+  <div class="col-sm-5">
     <div class="list-group">
       <a *ngFor="let location of locations$ | async"
          href="#"
          class="list-group-item list-group-item-action"
          [class.active]="location === selectedLocation"
          (click)="onSelect(location)">
-        {{location.name}}
+        {{location.name}} - {{location.region}}
       </a>
     </div>
   </div>
