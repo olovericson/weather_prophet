@@ -6,6 +6,7 @@ import {Location} from '../../location';
 import {Forecast} from '../../forecast';
 import {ForecastService} from './forecast-service';
 import 'x2js';
+import * as moment from 'moment';
 import * as X2JS from 'x2js';
 
 
@@ -35,7 +36,7 @@ export class YrForecastService implements ForecastService {
         return {
           timeSeries: forecasts.map(y => {
             return {
-              validTime: new Date(y['_from']),
+              validTime: moment(y['_from']),
               temperature: y['temperature']['_value'],
               precipitation: y['temperature']['_value'],
               imageUrl: `assets/images/smhi/${y['symbol']['_number']}.png`
@@ -65,7 +66,7 @@ export class YrForecastService implements ForecastService {
         return {
           timeSeries: forecasts.map(y => {
             return {
-              validTime: new Date(y['_from']),
+              validTime: moment(y['_from'] + 'Z').add(-1, 'hour'),
               temperature: y['temperature']['_value'],
               precipitation: y['precipitation']['_value'],
               imageUrl: `assets/images/yr/${y['symbol']['_var']}.png`

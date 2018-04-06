@@ -37,17 +37,17 @@ export class ForecastComponent implements OnInit {
       this.doneLoading = true;
       const forecasts = this.smhiForecast.timeSeries.map(smhi => {
         let yrForecast = this.yrForecast.timeSeries.find((y: TimeSeriesEntry) => {
-          return y.validTime.getTime() === smhi.validTime.getTime();
+          return y.validTime.isSame(smhi.validTime);
         });
 
         if (!yrForecast) {
           yrForecast = this.longTermYrForecast.timeSeries.find((y: TimeSeriesEntry) => {
-            return y.validTime.getTime() === smhi.validTime.getTime();
+            return y.validTime.isSame(smhi.validTime);
           });
         }
 
         if (!yrForecast) {
-          yrForecast = {validTime: new Date(), imageUrl: 'assets/images/no_image.png', precipitation: NaN, temperature: NaN};
+          yrForecast = {validTime: moment(), imageUrl: 'assets/images/no_image.png', precipitation: NaN, temperature: NaN};
         }
         return {
           time: smhi.validTime,
@@ -83,18 +83,18 @@ export class ForecastComponent implements OnInit {
   }
 
   formatDate(date: Date): string {
-     moment.locale('sv');
+      moment.locale('sv');
       moment.updateLocale('sv', {
         calendar : {
-          lastDay : '[Igår] LT',
-          sameDay : '[Idag] LT',
-          nextDay : '[Imorgon] LT',
-          lastWeek : '[Förra] dddd LT',
-          nextWeek : 'dddd LT',
-          sameElse : 'Do MMM LT'
+          lastDay : '[Igår] H:mm',
+          sameDay : '[Idag] H:mm',
+          nextDay : '[Imorgon] H:mm',
+          lastWeek : '[Förra] dddd H:mm',
+          nextWeek : 'dddd H:mm',
+          sameElse : 'Do MMM H:mm'
         }
       });
 
-     return moment(date).local().calendar();
+     return moment(date).local().locale('sv').calendar();
   }
 }

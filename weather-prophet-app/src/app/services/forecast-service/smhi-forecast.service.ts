@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { Location } from '../../location';
 import {Forecast} from '../../forecast';
 import {ForecastService} from './forecast-service';
+import * as moment from 'moment';
 
 @Injectable()
 export class SmhiForecastService implements ForecastService {
@@ -26,8 +27,8 @@ export class SmhiForecastService implements ForecastService {
         return {
           timeSeries: x['timeSeries'].map(y => {
             const weatherSymbol = getParameterValue(y, 'Wsymb2');
-            const date = new Date(y['validTime'].replace('Z', ''));
-            date.setTime(date.getTime() + (2 * 3600 * 1000));
+            const date = moment(y['validTime']);
+
             return {
               validTime: date,
               temperature: getParameterValue(y, 't'),
