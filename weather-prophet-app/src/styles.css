@@ -1,3 +1,9 @@
+body{
+  background-color: #222;
+  color: #ffffff;
+}
+
+.th
 .container-box{
   width: 100%;
   vertical-align: middle;
@@ -8,11 +14,11 @@
 .container-box input#search-box{
   width: 100%;
   height: 50px;
-  background: #ffffff;
-  border-color: rgba(29, 32, 35, 0.76);
+  border-color: #fff;
+  background-color: #222;
   font-size: 10pt;
   float: left;
-  color: #63717f;
+  color: #fff;
   padding-left: 20px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -25,21 +31,21 @@
   margin-left: 17px;
   margin-top: 17px;
   z-index: 1;
-  color: #4f5b66;
+  color: #fff;
 }
 
 .container-1 input#search-box::-webkit-input-placeholder {
-  color: #65737e;
+  color: #fff;
 }
 
 .container-1 input#search-box:-moz-placeholder { /* Firefox 18- */
-  color: #65737e;
+  color: #fff;
 }
 
 .container-1 input#search-box::-moz-placeholder {  /* Firefox 19+ */
-  color: #65737e;
+  color: #fff;
 }
 
 .container-1 input#search-box:-ms-input-placeholder {
-  color: #65737e;
+  color: #fff;
 }
