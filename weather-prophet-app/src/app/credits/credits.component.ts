@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./credits.component.css']
 })
 export class CreditsComponent implements OnInit {
+  show = true;
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
+  close() {
+    this.show = false;
+  }
 }
