@@ -32,6 +32,8 @@ export class ForecastComponent implements OnInit {
 
   get forecasts(): any {
     if (this.smhiForecast && this.yrForecast) {
+      console.log(this.smhiForecast);
+      console.log(this.yrForecast);
       this.doneLoading = true;
       const forecasts = this.smhiForecast.timeSeries.map(smhi => {
         let yrForecast = this.yrForecast.timeSeries.find((y: TimeSeriesEntry) => {
