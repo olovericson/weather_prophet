@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LocationService} from '../services/location-service/location.service';
-import {Location} from '../location';
+import {ForecastLocation} from '../forecastLocation';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 
@@ -14,9 +14,9 @@ import {
   styleUrls: ['./locations-forecast.component.css']
 })
 export class LocationsForecastComponent implements OnInit {
-  locations: Location[];
-  selectedLocation: Location;
-  locations$: Observable<Location[]>;
+  locations: ForecastLocation[];
+  selectedLocation: ForecastLocation;
+  locations$: Observable<ForecastLocation[]>;
   private searchTerms = new Subject<string>();
 
   constructor(private locationService: LocationService) { }
@@ -37,9 +37,5 @@ export class LocationsForecastComponent implements OnInit {
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
-  }
-
-  onSelect(location: Location): void {
-    this.selectedLocation = location;
   }
 }

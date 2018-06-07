@@ -1,10 +1,12 @@
 import {Component, OnInit, Input, HostListener} from '@angular/core';
-import { Location } from '../location';
+import { ForecastLocation } from '../forecastLocation';
 import {SmhiForecastService} from '../services/forecast-service/smhi-forecast.service';
 import {Forecast, TimeSeriesEntry} from '../forecast';
 import * as moment from 'moment';
 import {YrForecastService} from '../services/forecast-service/yr-forecast.service';
 import {forkJoin} from 'rxjs/observable/forkJoin';
+import { ActivatedRoute } from '@angular/router'
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-forecast',
@@ -13,21 +15,26 @@ import {forkJoin} from 'rxjs/observable/forkJoin';
 })
 export class ForecastComponent implements OnInit {
 
-  constructor(private smhiForecastService: SmhiForecastService, private yrForecastService: YrForecastService) { }
+  constructor(
+    private smhiForecastService: SmhiForecastService,
+    private yrForecastService: YrForecastService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
-  @Input() set location(value: Location) {
+  @Input() set forecastLocation(value: ForecastLocation) {
     this.doneLoading = false;
-    this._location = undefined;
+    this._forecastLocation = undefined;
     if (value) {
       this.getForecast(value);
     }
-    this._location = value;
+    this._forecastLocation = value;
   }
 
   doneLoading: boolean;
 
-  get location(): Location {
-    return this._location;
+  get forecastLocation(): ForecastLocation {
+    return this._forecastLocation;
   }
 
   get forecasts(): any {
@@ -60,16 +67,29 @@ export class ForecastComponent implements OnInit {
     return undefined;
   }
 
-  private _location: Location;
+  private _forecastLocation: ForecastLocation;
 
   smhiForecast: Forecast;
   yrForecast: Forecast;
   longTermYrForecast: Forecast;
 
   ngOnInit() {
+    this.getForegast();
   }
 
-  getForecast(location: Location): void {
+  getForegast(): void {
+    const loc: ForecastLocation = {
+      country: this.route.snapshot.paramMap.get('country'),
+      region: this.route.snapshot.paramMap.get('region'),
+      name: this.route.snapshot.paramMap.get('place'),
+      lat: +this.route.snapshot.paramMap.get('lat'),
+      lon: +this.route.snapshot.paramMap.get('lng')
+    };
+
+    this.getForecast(loc);
+  }
+
+  getForecast(location: ForecastLocation): void {
     forkJoin([
       this.yrForecastService.get_forecast_for_location(location),
       this.yrForecastService.get_long_term_forecast_for_location(location),

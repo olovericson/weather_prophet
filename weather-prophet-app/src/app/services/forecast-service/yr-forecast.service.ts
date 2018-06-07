@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {Location} from '../../location';
+import {ForecastLocation} from '../../forecastLocation';
 import {Forecast} from '../../forecast';
 import {ForecastService} from './forecast-service';
 import 'x2js';
@@ -16,7 +16,7 @@ export class YrForecastService implements ForecastService {
   constructor(private http: HttpClient) {
   }
 
-  get_long_term_forecast_for_location(location: Location): Observable<Forecast> {
+  get_long_term_forecast_for_location(location: ForecastLocation): Observable<Forecast> {
     const url = this.getUrl(location, 'forecast');
 
     const headers = new HttpHeaders({
@@ -46,7 +46,7 @@ export class YrForecastService implements ForecastService {
       });
   }
 
-  get_forecast_for_location(location: Location): Observable<Forecast> {
+  get_forecast_for_location(location: ForecastLocation): Observable<Forecast> {
     const url = this.getUrl(location, 'forecast_hour_by_hour');
 
     const headers = new HttpHeaders({
@@ -76,7 +76,7 @@ export class YrForecastService implements ForecastService {
       });
   }
 
-  private getUrl(location: Location, forecast: string) {
+  private getUrl(location: ForecastLocation, forecast: string) {
     return 'https://cors-anywhere.herokuapp.com/' + 'https://www.yr.no/sted/' +
       location.country + '/' +
       location.region + '/' +

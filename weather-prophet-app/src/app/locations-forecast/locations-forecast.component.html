@@ -11,15 +11,11 @@
   <div class="col-sm-5">
     <div class="list-group">
       <a *ngFor="let location of locations$ | async"
-         href="#"
+         routerLink="/forecasts/{{location.country}}/{{location.region}}/{{location.name}}/lat/{{location.lat}}/lng/{{location.lon}}"
          class="list-group-item-dark list-group-item-action"
-         [class.active]="location === selectedLocation"
-         (click)="onSelect(location)">
+         >
         {{location.name}} - {{location.region}}
       </a>
     </div>
   </div>
 </div>
-
-
-<app-forecast [location]="selectedLocation"></app-forecast>

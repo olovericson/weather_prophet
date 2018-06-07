@@ -1,4 +1,4 @@
-export class Location {
+export class ForecastLocation {
   name: string;
 
   region: string;

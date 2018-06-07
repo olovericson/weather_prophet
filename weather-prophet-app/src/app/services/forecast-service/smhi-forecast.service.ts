@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Location } from '../../location';
+import { ForecastLocation } from '../../forecastLocation';
 import {Forecast} from '../../forecast';
 import {ForecastService} from './forecast-service';
 import * as moment from 'moment';
@@ -11,7 +11,7 @@ import * as moment from 'moment';
 export class SmhiForecastService implements ForecastService {
   constructor(private http: HttpClient) { }
 
-  get_forecast_for_location(location: Location): Observable<Forecast> {
+  get_forecast_for_location(location: ForecastLocation): Observable<Forecast> {
     const url = 'https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/' +
       (Math.round(location.lon * 1000) / 1000) +
       '/lat/' +

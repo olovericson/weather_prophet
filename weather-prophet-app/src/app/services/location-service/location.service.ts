@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { Location } from '../../location';
+import { ForecastLocation } from '../../forecastLocation';
 import {tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
@@ -10,7 +10,7 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
-  get_locations = function(): Observable<Location[]> {
+  get_locations = function(): Observable<ForecastLocation[]> {
     return of([
       {name: 'Falun', region: 'Dalarna', country: 'Sweden', lat: 60.60168006, lon: 15.62356712},
       {name: 'Färnäs', region: 'Dalarna', country: 'Sweden', lat: 61.00051429, lon: 14.62753867},
@@ -18,7 +18,7 @@ export class LocationService {
     ]);
   };
 
-  searchLocations(term: string): Observable<Location[]> {
+  searchLocations(term: string): Observable<ForecastLocation[]> {
     if (!term.trim()) {
       return of([]);
     }
