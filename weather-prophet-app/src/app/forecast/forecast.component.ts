@@ -26,6 +26,9 @@ export class ForecastComponent implements OnInit {
   yrForecast: Forecast;
   longTermYrForecast: Forecast;
   searchVal: string = "";
+  place: string;
+  region: string;
+  country: string;
 
   ngOnInit() {
     this.route.params.subscribe(res => {
@@ -34,11 +37,15 @@ export class ForecastComponent implements OnInit {
   }
 
   getForecast(): void {
-    this.searchVal = this.route.snapshot.paramMap.get('place');
+    this.place = this.route.snapshot.paramMap.get('place');
+    this.region = this.route.snapshot.paramMap.get('region');
+    this.country = this.route.snapshot.paramMap.get('country');
+
+
     const loc: ForecastLocation = {
-      country: this.route.snapshot.paramMap.get('country'),
-      region: this.route.snapshot.paramMap.get('region'),
-      name: this.route.snapshot.paramMap.get('place'),
+      country: this.country,
+      region: this.region,
+      name: this.place,
       lat: +this.route.snapshot.paramMap.get('lat'),
       lon: +this.route.snapshot.paramMap.get('lng')
     };
