@@ -10,6 +10,7 @@ import {LocationService} from './services/location-service/location.service';
 import {SmhiForecastService} from './services/forecast-service/smhi-forecast.service';
 import {YrForecastService} from './services/forecast-service/yr-forecast.service';
 import { CreditsComponent } from './credits/credits.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreditsComponent } from './credits/credits.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     LocationService,
