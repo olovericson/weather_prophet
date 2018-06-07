@@ -17,7 +17,6 @@
       <a *ngFor="let location of locations$ | async"
          routerLink="/forecasts/{{location.country}}/{{location.region}}/{{location.name}}/lat/{{location.lat}}/lng/{{location.lon}}"
          class="list-group-item-dark list-group-item-action"
-         (click)="onClick()"
          >
         {{location.name}} - {{location.region}}
       </a>

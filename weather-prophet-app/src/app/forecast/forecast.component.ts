@@ -29,14 +29,17 @@ export class ForecastComponent implements OnInit {
   place: string;
   region: string;
   country: string;
+  loading:  boolean;
 
   ngOnInit() {
     this.route.params.subscribe(res => {
+      console.log(res);
       this.getForecast();
     });
   }
 
   getForecast(): void {
+    this.loading = true;
     this.place = this.route.snapshot.paramMap.get('place');
     this.region = this.route.snapshot.paramMap.get('region');
     this.country = this.route.snapshot.paramMap.get('country');
@@ -56,6 +59,8 @@ export class ForecastComponent implements OnInit {
       this.smhiForecastService.get_forecast_for_location(loc)
     ])
       .subscribe(forecast => {
+        this.loading = false;
+        console.log("forecasts fetched");
         this.yrForecast = forecast[0];
         this.longTermYrForecast = forecast[1];
         this.smhiForecast = forecast[2];

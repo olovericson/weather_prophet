@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Forecast, TimeSeriesEntry} from "../forecast";
 import * as moment from 'moment';
 
@@ -7,24 +7,31 @@ import * as moment from 'moment';
   templateUrl: './forecast-table.component.html',
   styleUrls: ['./forecast-table.component.css']
 })
-export class ForecastTableComponent implements OnInit {
+export class ForecastTableComponent implements OnInit, OnChanges {
   @Input() smhiForecast: Forecast;
   @Input() yrForecast: Forecast;
   @Input() longTermYrForecast: Forecast;
+  @Input() loading: boolean;
 
-  doneLoading: boolean = false;
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.loading){
+      console.log("Setting forecasts to undefined!");
+      this.forecasts = undefined;
+    } else {
+      console.log(changes);
 
-  _forecasts: any;
+      console.log("Something changed!");
 
-  get forecasts(): any {
-    if (this._forecasts){
-      return this._forecasts;
+      this.doForecast();
     }
-    if (this.smhiForecast && this.yrForecast) {
-      console.log(this.smhiForecast);
-      console.log(this.yrForecast);
-      this.doneLoading = true;
-      const forecasts = this.smhiForecast.timeSeries.map(smhi => {
+
+  }
+
+  forecasts: any;
+
+  doForecast(): void {
+    if (this.smhiForecast && this.yrForecast){
+      this.forecasts = this.smhiForecast.timeSeries.map(smhi => {
         let yrForecast = this.yrForecast.timeSeries.find((y: TimeSeriesEntry) => {
           return y.validTime.isSame(smhi.validTime);
         });
@@ -43,10 +50,7 @@ export class ForecastTableComponent implements OnInit {
           entries: [smhi, yrForecast]
         };
       });
-      this._forecasts = forecasts;
-      return forecasts;
     }
-    return undefined;
   }
 
 
