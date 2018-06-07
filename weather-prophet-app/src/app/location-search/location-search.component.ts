@@ -10,12 +10,9 @@ import {
 
 @Component({
   selector: 'app-locations-forecast',
-  templateUrl: './locations-forecast.component.html',
-  styleUrls: ['./locations-forecast.component.css']
+  templateUrl: './location-search.component.html'
 })
-export class LocationsForecastComponent implements OnInit {
-  locations: ForecastLocation[];
-  selectedLocation: ForecastLocation;
+export class LocationSearchComponent implements OnInit {
   locations$: Observable<ForecastLocation[]>;
   private searchTerms = new Subject<string>();
 

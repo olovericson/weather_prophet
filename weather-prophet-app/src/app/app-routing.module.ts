@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LocationsForecastComponent } from './locations-forecast/locations-forecast.component'
+import { LocationSearchComponent } from './location-search/location-search.component'
 import { ForecastComponent } from './forecast/forecast.component'
 
 const routes: Routes = [
-  { path: 'forecasts', component: LocationsForecastComponent },
+  { path: 'forecasts', component: LocationSearchComponent },
   { path: 'forecasts/:country/:region/:place/lat/:lat/lng/:lng', component: ForecastComponent },
   { path: '', redirectTo: '/forecasts', pathMatch: 'full' },
 ];
