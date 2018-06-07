@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Forecast, TimeSeriesEntry} from "../forecast";
-import moment = require("moment");
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-forecast-table',
