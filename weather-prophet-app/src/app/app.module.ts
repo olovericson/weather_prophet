@@ -11,13 +11,15 @@ import {SmhiForecastService} from './services/forecast-service/smhi-forecast.ser
 import {YrForecastService} from './services/forecast-service/yr-forecast.service';
 import { CreditsComponent } from './credits/credits.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { ForecastTableComponent } from './forecast-table/forecast-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocationsForecastComponent,
     ForecastComponent,
-    CreditsComponent
+    CreditsComponent,
+    ForecastTableComponent
   ],
   imports: [
     BrowserModule,

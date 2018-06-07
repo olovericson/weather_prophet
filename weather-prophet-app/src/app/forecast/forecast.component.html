@@ -3,36 +3,4 @@
     <h2>Weather forecast for {{forecastLocation.name}}</h2>
   </div>
 </div>
-<div *ngIf="forecasts" class="row mt-2">
-  <div class="col">
-    <table class="table table-dark">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Time</th>
-          <th scope="col" style="text-align: center">SMHI</th>
-          <th scope="col" style="text-align: center">YR</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let timeSeriesEntry of forecasts">
-          <td>{{formatDate(timeSeriesEntry.entries[0].validTime)}}</td>
-          <td *ngFor="let i of [0, 1]" width="200px">
-            <div class="row">
-              <div class="col">
-                <img [src]="timeSeriesEntry.entries[i].imageUrl" height="80px">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                {{timeSeriesEntry.entries[i].temperature}}°C
-              </div>
-              <div class="col">
-                {{timeSeriesEntry.entries[i].precipitation}}mm
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<app-forecast-table [smhiForecast]="smhiForecast" [longTermYrForecast]="longTermYrForecast" [yrForecast]="yrForecast"></app-forecast-table>
