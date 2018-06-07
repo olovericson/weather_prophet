@@ -14,7 +14,12 @@ export class ForecastTableComponent implements OnInit {
 
   doneLoading: boolean = false;
 
+  _forecasts: any;
+
   get forecasts(): any {
+    if (this._forecasts){
+      return this._forecasts;
+    }
     if (this.smhiForecast && this.yrForecast) {
       console.log(this.smhiForecast);
       console.log(this.yrForecast);
@@ -38,7 +43,7 @@ export class ForecastTableComponent implements OnInit {
           entries: [smhi, yrForecast]
         };
       });
-
+      this._forecasts = forecasts;
       return forecasts;
     }
     return undefined;
