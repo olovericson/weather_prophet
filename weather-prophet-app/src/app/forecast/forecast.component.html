@@ -1,6 +1,2 @@
-<div *ngIf="forecastLocation" class="row mt-5">
-  <div class="col">
-    <h2>Weather forecast for {{forecastLocation.name}}</h2>
-  </div>
-</div>
+<app-location-search [searchValue]="searchVal"></app-location-search>
 <app-forecast-table [smhiForecast]="smhiForecast" [longTermYrForecast]="longTermYrForecast" [yrForecast]="yrForecast"></app-forecast-table>

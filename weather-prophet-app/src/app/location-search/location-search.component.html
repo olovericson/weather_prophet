@@ -2,7 +2,11 @@
   <div class="col-sm-5">
     <div class="box">
         <div class="container-box">
-          <input #searchBox id="search-box" placeholder="Search..." (keyup)="search(searchBox.value)" />
+          <input
+            [(ngModel)]="searchValue"
+            #searchBox id="search-box"
+            placeholder="Search..."
+            (keyup)="search(searchBox.value)" />
         </div>
     </div>
   </div>
@@ -13,6 +17,7 @@
       <a *ngFor="let location of locations$ | async"
          routerLink="/forecasts/{{location.country}}/{{location.region}}/{{location.name}}/lat/{{location.lat}}/lng/{{location.lon}}"
          class="list-group-item-dark list-group-item-action"
+         (click)="onClick()"
          >
         {{location.name}} - {{location.region}}
       </a>
