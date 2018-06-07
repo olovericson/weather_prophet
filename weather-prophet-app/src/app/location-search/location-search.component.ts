@@ -15,10 +15,13 @@ import {
 export class LocationSearchComponent implements OnInit, OnChanges {
   locations$: Observable<ForecastLocation[]>;
   private searchTerms = new Subject<string>();
+  searchValue: string;
 
-  @Input() searchValue: string;
+  @Input() loading: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    this.searchValue = "";
     this.searchTerms.next("");
   }
 
@@ -35,10 +38,6 @@ export class LocationSearchComponent implements OnInit, OnChanges {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.locationService.searchLocations(term)),
     );
-  }
-
-  onClick(){
-
   }
 
   // Push a search term into the observable stream.

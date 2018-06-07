@@ -15,13 +15,8 @@ export class ForecastTableComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.loading){
-      console.log("Setting forecasts to undefined!");
       this.forecasts = undefined;
     } else {
-      console.log(changes);
-
-      console.log("Something changed!");
-
       this.doForecast();
     }
 
