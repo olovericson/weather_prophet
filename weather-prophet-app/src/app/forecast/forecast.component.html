@@ -2,10 +2,10 @@
 <app-location-search [loading]="loading"></app-location-search>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" routerLink={{currentLocation}}>Table</a>
+    <a class="nav-link" [class.active]="visualization!='graph'" routerLink={{currentLocation}}>Table</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" routerLink="{{currentLocation}}/graph">Graph</a>
+    <a class="nav-link" [class.active]="visualization=='graph'" routerLink="{{currentLocation}}/graph">Graph</a>
   </li>
 </ul>
 <app-forecast-visualization-wrapper
