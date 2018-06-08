@@ -20,7 +20,6 @@ export class LocationSearchComponent implements OnInit, OnChanges {
   @Input() loading: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     this.searchValue = "";
     this.searchTerms.next("");
   }

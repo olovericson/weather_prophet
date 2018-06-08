@@ -1,3 +1,12 @@
 <h2>{{place}}, {{region}}, {{country}}</h2>
 <app-location-search [loading]="loading"></app-location-search>
-<app-forecast-table [loading]="loading" [smhiForecast]="smhiForecast" [longTermYrForecast]="longTermYrForecast" [yrForecast]="yrForecast"></app-forecast-table>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Table</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Graph</a>
+  </li>
+</ul>
+<app-forecast-visualization-wrapper  [loading]="loading" [smhiForecast]="smhiForecast" [longTermYrForecast]="longTermYrForecast" [yrForecast]="yrForecast">
+</app-forecast-visualization-wrapper>

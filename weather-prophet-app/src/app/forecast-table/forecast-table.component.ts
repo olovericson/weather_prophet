@@ -14,6 +14,7 @@ export class ForecastTableComponent implements OnInit, OnChanges {
   @Input() loading: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log("Change detected in table!");
     if (this.loading){
       this.forecasts = undefined;
     } else {
@@ -52,6 +53,12 @@ export class ForecastTableComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+    console.log("initialized!");
+    if (this.loading){
+      this.forecasts = undefined;
+    } else {
+      this.doForecast();
+    }
   }
 
   formatDate(date: Date): string {

@@ -13,6 +13,7 @@ import {YrForecastService} from './services/forecast-service/yr-forecast.service
 import { CreditsComponent } from './credits/credits.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ForecastTableComponent } from './forecast-table/forecast-table.component';
+import { ForecastVisualizationWrapperComponent } from './forecast-visualization-wrapper/forecast-visualization-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ForecastTableComponent } from './forecast-table/forecast-table.componen
     LocationSearchComponent,
     ForecastComponent,
     CreditsComponent,
-    ForecastTableComponent
+    ForecastTableComponent,
+    ForecastVisualizationWrapperComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,9 @@ import { ForecastTableComponent } from './forecast-table/forecast-table.componen
     LocationService,
     SmhiForecastService,
     YrForecastService
+  ],
+  entryComponents: [
+    ForecastTableComponent
   ],
   bootstrap: [AppComponent]
 })
