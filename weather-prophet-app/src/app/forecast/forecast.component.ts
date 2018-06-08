@@ -35,6 +35,7 @@ export class ForecastComponent implements OnInit {
   lat: number;
   lng: number;
   loading:  boolean;
+  visualization: string;
 
   ngOnInit() {
     this.route.params.subscribe(res => {
@@ -44,6 +45,7 @@ export class ForecastComponent implements OnInit {
   }
 
   getForecast(): void {
+    this.visualization = this.route.snapshot.paramMap.get('visualization');
     this.loading = true;
     this.place = this.route.snapshot.paramMap.get('place');
     this.region = this.route.snapshot.paramMap.get('region');

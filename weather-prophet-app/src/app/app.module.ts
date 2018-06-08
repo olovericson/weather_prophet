@@ -14,6 +14,7 @@ import { CreditsComponent } from './credits/credits.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ForecastTableComponent } from './forecast-table/forecast-table.component';
 import { ForecastVisualizationWrapperComponent } from './forecast-visualization-wrapper/forecast-visualization-wrapper.component';
+import { ForecastGraphComponent } from './forecast-graph/forecast-graph.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ForecastVisualizationWrapperComponent } from './forecast-visualization-
     ForecastComponent,
     CreditsComponent,
     ForecastTableComponent,
-    ForecastVisualizationWrapperComponent
+    ForecastVisualizationWrapperComponent,
+    ForecastGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { ForecastVisualizationWrapperComponent } from './forecast-visualization-
     YrForecastService
   ],
   entryComponents: [
-    ForecastTableComponent
+    ForecastTableComponent,
+    ForecastGraphComponent
   ],
   bootstrap: [AppComponent]
 })

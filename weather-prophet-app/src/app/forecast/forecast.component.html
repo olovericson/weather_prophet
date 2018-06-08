@@ -8,5 +8,10 @@
     <a class="nav-link" routerLink="{{currentLocation}}/graph">Graph</a>
   </li>
 </ul>
-<app-forecast-visualization-wrapper  [loading]="loading" [smhiForecast]="smhiForecast" [longTermYrForecast]="longTermYrForecast" [yrForecast]="yrForecast">
+<app-forecast-visualization-wrapper
+  [visualization]="visualization"
+  [loading]="loading"
+  [smhiForecast]="smhiForecast"
+  [longTermYrForecast]="longTermYrForecast"
+  [yrForecast]="yrForecast">
 </app-forecast-visualization-wrapper>
