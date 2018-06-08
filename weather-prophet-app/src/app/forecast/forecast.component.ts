@@ -5,8 +5,8 @@ import {Forecast, TimeSeriesEntry} from '../forecast';
 import * as moment from 'moment';
 import {YrForecastService} from '../services/forecast-service/yr-forecast.service';
 import {forkJoin} from 'rxjs/observable/forkJoin';
-import { ActivatedRoute } from '@angular/router'
-import { Location } from '@angular/common';
+import { ActivatedRoute} from '@angular/router'
+
 
 @Component({
   selector: 'app-forecast',
@@ -18,17 +18,22 @@ export class ForecastComponent implements OnInit {
   constructor(
     private smhiForecastService: SmhiForecastService,
     private yrForecastService: YrForecastService,
-    private route: ActivatedRoute,
-    private location: Location
+    private route: ActivatedRoute
   ) { }
 
   smhiForecast: Forecast;
   yrForecast: Forecast;
   longTermYrForecast: Forecast;
-  searchVal: string = "";
+
+  get currentLocation(): string {
+    return `/forecasts/${this.country}/${this.region}/${this.place}/lat/${this.lat}/lng/${this.lng}`
+  }
+
   place: string;
   region: string;
   country: string;
+  lat: number;
+  lng: number;
   loading:  boolean;
 
   ngOnInit() {
@@ -43,14 +48,15 @@ export class ForecastComponent implements OnInit {
     this.place = this.route.snapshot.paramMap.get('place');
     this.region = this.route.snapshot.paramMap.get('region');
     this.country = this.route.snapshot.paramMap.get('country');
-
+    this.lat = +this.route.snapshot.paramMap.get('lat');
+    this.lng = +this.route.snapshot.paramMap.get('lng');
 
     const loc: ForecastLocation = {
       country: this.country,
       region: this.region,
       name: this.place,
-      lat: +this.route.snapshot.paramMap.get('lat'),
-      lon: +this.route.snapshot.paramMap.get('lng')
+      lat: this.lat,
+      lon: this.lng
     };
 
     forkJoin([

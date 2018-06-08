@@ -5,6 +5,7 @@ import { ForecastComponent } from './forecast/forecast.component'
 
 const routes: Routes = [
   { path: 'forecasts', component: LocationSearchComponent },
+  { path: 'forecasts/:country/:region/:place/lat/:lat/lng/:lng/:visualization', component: ForecastComponent },
   { path: 'forecasts/:country/:region/:place/lat/:lat/lng/:lng', component: ForecastComponent },
   { path: '', redirectTo: '/forecasts', pathMatch: 'full' },
 ];
